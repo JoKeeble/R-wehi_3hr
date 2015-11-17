@@ -75,8 +75,7 @@ and display it at the same time.
 (cytokines <- read.csv('data/cytokines.csv'))
 ```
 
-Wow... that was a lot of output. At least it means the data loaded
-properly. Let's check the top (the first 6 lines) of this `data.frame` using the
+Check the top (the first 6 lines) of this `data.frame` using the
 function `head()`:
 
 ```{r, results='show', purl=FALSE}
