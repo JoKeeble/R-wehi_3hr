@@ -13,7 +13,7 @@ source("setup_wehi.R")
 
 > ## Learning Objectives
 >
-> * load external data (CSV files) in memory using the survey table
+> * load external data (CSV files) in memory using the cytokine table
 >  (`cytokines.csv`) as an example
 > * explore the structure and the content of the data in R
 > * understand what are factors and how to manipulate them
@@ -26,7 +26,7 @@ source("setup_wehi.R")
 ### Presentation of cytokine data
 ```
 
-We are measuring cytokine levels in serum collected from "control" and "infected" patients.
+Cytokine levels were measured in serum collected from "control", "infection_A", and "infection_B" patients.
 The dataset is stored as a `csv` file: each row holds information for a single patient, and the columns represent:
 
 | Column           | Description                        |
@@ -43,8 +43,8 @@ The dataset is stored as a `csv` file: each row holds information for a single p
 | IL4              | concentration of IL4               |
 
 
-We are going to use the R function `download.file()` to download the CSV file
-that contains the cytokine data from figshare, and we will use `read.csv()` to
+Use the R function `download.file()` to download the CSV file
+that contains the cytokine data from figshare, and use `read.csv()` to
 load into memory (as a `data.frame`) the content of the CSV file:
 
 - First, make sure you are in the correct working directory by typing `getwd()`.
@@ -91,7 +91,7 @@ str(cytokines)
 
 ### Challenge
 
-Based on the output of `str(cytokines)`, can you answer the following questions?
+Based on the output of `str(cytokines)`,
 
 * What is the class of the object `cytokines`?
 * How many rows and how many columns are in this object?
@@ -100,7 +100,8 @@ Based on the output of `str(cytokines)`, can you answer the following questions?
 ```{r, echo=FALSE, purl=TRUE}
 
 ## Challenge
-## Based on the output of `str(cytokines)`, can you answer the following questions?
+## Based on the output of `str(cytokines)`, 
+
 ## * What is the class of the object `cytokines`?
 ## * How many rows and how many columns are in this object?
 ## * How many patient groups have been tested?
@@ -118,14 +119,7 @@ Based on the output of `str(cytokines)`, can you answer the following questions?
 Factors are used to represent categorical data. Factors can be ordered or
 unordered and are an important class for statistical analysis and for plotting.
 
-Factors are stored as integers, and have labels associated with these unique
-integers. While factors look (and often behave) like character vectors, they are
-actually integers under the hood, and you need to be careful when treating them
-like strings.
-
-Once created, factors can only contain a pre-defined set values, known as
-*levels*. By default, R always sorts *levels* in alphabetical order. For
-instance, if you have a factor with 2 levels:
+Factors contain a pre-defined set values, known as *levels*. By default, R always sorts *levels* in alphabetical order. For instance, if you have a factor with 2 levels:
 
 ```{r, purl=TRUE}
 cell <- factor(c("neutrophil", "eosinophil", "eosinophil", "neutrophil"))
@@ -138,63 +132,8 @@ levels(cell)
 nlevels(cell)
 ```
 
-Sometimes, the order of the factors does not matter, other times you might want
-to specify the order because it is meaningful (e.g., "low", "medium", "high") or
-it is required by particular type of analysis. Additionally, specifying the
-order of the levels allows us to compare levels:
 
-```{r, purl=TRUE, error=TRUE}
-GCSFR <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
-levels(GCSFR)
-GCSFR <- factor(GCSFR, levels=c("low", "medium", "high"))
-levels(GCSFR)
-min(GCSFR) ## doesn't work
-GCSFR <- factor(GCSFR, levels=c("low", "medium", "high"), ordered=TRUE)
-levels(GCSFR)
-min(GCSFR) ## works!
-```
-
-In R's memory, these factors are represented by numbers (1, 2, 3). They are
-better than using simple integer labels because factors are self describing:
-`"low"`, `"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which
-is low?  You wouldn't be able to tell with just integer data. Factors have this
-information built in. It is particularly helpful when there are many levels
-(for example, multiple cell types analysed by flow cytometry).
-
-### Converting factors
+### Converting factors 
 
 If you need to convert a factor to a character vector, simply use
 `as.character(x)`.
-
-Converting a factor to a numeric vector is however a little trickier, and you
-have to go via a character vector. Compare:
-
-```{r, purl=TRUE}
-f <- factor(c(1, 5, 10, 2))
-as.numeric(f)               ## wrong! and there is no warning...
-as.numeric(as.character(f)) ## works...
-as.numeric(levels(f))[f]    ## The recommended way.
-```
-
-### Challenge
-
-The function `table()` tabulates observations and can be used to create
-bar plots quickly. For instance:
-
-```{r wrong-order, results='show', purl=TRUE}
-## Challenge
-
-## How can you recreate this plot but by having "control" being listed
-##last instead of first?
-exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
-                   "treat1", "treat2", "treat3"))
-table(exprmt)
-barplot(table(exprmt))
-```
-
-<!---
-```{r correct-order, purl=FALSE}
-exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
-barplot(table(exprmt))
-```
---->
