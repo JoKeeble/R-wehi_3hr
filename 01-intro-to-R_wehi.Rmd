@@ -17,6 +17,7 @@ source("setup_wehi.R")
 > * Begin to discover the magic of using R 
 > * Understand concepts of objects and value assignment
 > * Understand concepts of vector and data types
+> * Understand concepts of matrices
 > * Get exposed to a few functions
 
 ------------
@@ -176,6 +177,30 @@ str(celltype)
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
+
+## Matrices
+
+```{r, echo=FALSE, purl=TRUE}
+### Matrices
+
+```
+
+A matrix is a collection of values arranged in a two-dimensional layout (row x column) 
+
+Create a matrix containing numbers 1:15 with 5 rows x 3 columns:
+
+```{r, purl=FALSE}
+x <- matrix(data = 1:15, nrow = 5, ncol = 3)
+x
+```
+
+Access values from matrix using [row,column]:
+
+```{r, purl=FALSE}
+x[2,3]    # row 2, column 3
+x[2,]     # all of row 2
+x[,3]     # all of column 3
+```
 
 We are now going to use our "cytokines" dataset to explore the `data.frame` data
 structure.

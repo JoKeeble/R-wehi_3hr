@@ -73,6 +73,7 @@ img {
 <li>Begin to discover the magic of using R</li>
 <li>Understand concepts of objects and value assignment</li>
 <li>Understand concepts of vector and data types</li>
+<li>Understand concepts of matrices</li>
 <li>Get exposed to a few functions</li>
 </ul>
 </blockquote>
@@ -143,6 +144,17 @@ class(celltype)    # what is the class (type of element)?</code></pre>
 <p>The function <code>str()</code> gives an overview of the object and the elements it contains:</p>
 <pre class="r"><code>str(celltype)</code></pre>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>) and factors (<code>factor</code>).</p>
+</div>
+<div id="matrices" class="section level2">
+<h2>Matrices</h2>
+<p>A matrix is a collection of values arranged in a two-dimensional layout (row x column)</p>
+<p>Create a matrix containing numbers 1:15 with 5 rows x 3 columns:</p>
+<pre class="r"><code>x &lt;- matrix(data = 1:15, nrow = 5, ncol = 3)
+x</code></pre>
+<p>Access values from matrix using [row,column]:</p>
+<pre class="r"><code>x[2,3]    # row 2, column 3
+x[2,]     # all of row 2
+x[,3]     # all of column 3</code></pre>
 <p>We are now going to use our “cytokines” dataset to explore the <code>data.frame</code> data structure.</p>
 </div>
 
