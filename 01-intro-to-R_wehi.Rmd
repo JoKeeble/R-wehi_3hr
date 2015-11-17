@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: Introducing the Wonderful World of R
+title: Introducing the Awesome World of R
 author: Data Carpentry contributors
 minutes: 45
 ---
@@ -14,17 +14,18 @@ source("setup_wehi.R")
 
 > ## Learning Objectives
 >
-> * Begin to discover the magic of using R 
-> * Understand concepts of objects and value assignment
-> * Understand concepts of vector and data types
-> * Understand concepts of matrices
-> * Get exposed to a few functions
+> * Begin to discover the awesome power of using R 
+> * Examine some of the backbones of R: functions, objects, vectors, matrices
 
 ------------
 
 ## The Wonderful World of R
 
-_Start by showing an example of a script_
+_Start by showing an example of a script that generates a beautiful graph_
+
+```{r, purl=FALSE}
+pairs(iris[1:4], main = "Anderson's Iris Data -- 3 species", pch = 21, bg = c("red", "green3", "blue")[unclass(iris$Species)])
+```
 
 * Point to the different parts:
   - a function
@@ -84,7 +85,7 @@ Create a new variable based on another stored variable:
 weight_lb <- 2.2 * weight_kg
 ```
 
-## Vectors and Data Types
+## Vectors
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Vectors and data types
