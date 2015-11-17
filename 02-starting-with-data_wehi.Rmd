@@ -6,7 +6,7 @@ minutes: 20
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
-source("setup.R")
+source("setup_wehi.R")
 ```
 
 ------------
@@ -133,7 +133,7 @@ Once created, factors can only contain a pre-defined set values, known as
 instance, if you have a factor with 2 levels:
 
 ```{r, purl=TRUE}
-cell <- factor(c("neutrophil", "monocyte", "monocyte", "neutrophil"))
+cell <- factor(c("neutrophil", "eosinophil", "eosinophil", "neutrophil"))
 ```
 
 R will assign `1` to the level `"monocyte"` and `2` to the level `"neutrophil"` (because
