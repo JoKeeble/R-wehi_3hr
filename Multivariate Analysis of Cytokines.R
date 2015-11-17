@@ -141,6 +141,8 @@ y
 y["monocytes"]
 
 
+
+
 # Barplots ---------------------------------------------------------
 infiltrating.cells <- c(30, 50, 120)
 names(infiltrating.cells) <- c('T cells', 'B cells', 'Neutrophils')
