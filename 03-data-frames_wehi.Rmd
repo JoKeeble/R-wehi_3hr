@@ -6,7 +6,7 @@ minutes: 30
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
-source("setup.R")
+source("setup_wehi.R")
 cytokines <- read.csv("data/cytokines.csv")
 ```
 
