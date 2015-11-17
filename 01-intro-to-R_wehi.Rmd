@@ -15,7 +15,7 @@ source("setup_wehi.R")
 > ## Learning Objectives
 >
 > * Begin to appreciate the power of using R 
-> * Understand some of the backbones of R (functions, objects, vectors, matrices)
+> * Begin to understand some of the backbones of R (functions, objects, vectors, matrices)
 
 ------------
 
