@@ -24,7 +24,10 @@ source("setup_wehi.R")
 _Start by showing an example of a script that generates a beautiful graph_
 
 ```{r, purl=FALSE}
-pairs(iris[1:4], main = "Anderson's Iris Data -- 3 species", pch = 21, bg = c("red", "green3", "blue")[unclass(iris$Species)])
+pairs(iris[1:4], 
+      main = "Anderson's Iris Data -- 3 species", 
+      pch = 21, 
+      bg = c("red", "green3", "blue")[unclass(iris$Species)])
 ```
 
 * Point to the different parts:
