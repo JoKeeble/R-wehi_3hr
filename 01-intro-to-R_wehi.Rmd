@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: Introducing the Awesome World of R
+title: Introducing R
 author: Data Carpentry contributors
 minutes: 45
 ---
@@ -14,12 +14,12 @@ source("setup_wehi.R")
 
 > ## Learning Objectives
 >
-> * Begin to discover the awesome power of using R 
-> * Examine some of the backbones of R: functions, objects, vectors, matrices
+> * Begin to appreciate the power of using R 
+> * Understand some of the backbones of R (functions, objects, vectors, matrices)
 
 ------------
 
-## The Wonderful World of R
+## The Awesome World of R
 
 _Start by showing an example of a script that generates a beautiful graph_
 
@@ -46,7 +46,7 @@ Two popular style guides for R are [Hadley Wickham's](http://adv-r.had.co.nz/Sty
 
 ```
 
-R can be used as a calculator
+R can be used as a calculator:
 
 ```{r, purl=FALSE}
 3 + 5
@@ -174,11 +174,6 @@ contains:
 str(celltype)
 ```
 
-
-Vectors are one of the many **data structures** that R uses. Other important
-ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
-factors (`factor`).
-
 ## Matrices
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -203,5 +198,8 @@ x[2,]     # all of row 2
 x[,3]     # all of column 3
 ```
 
-We are now going to use our "cytokines" dataset to explore the `data.frame` data
-structure.
+Vectors and matrices are some of the many **data structures** that R uses. 
+
+Other important ones are lists (`list`), matrices, data frames (`data.frame`) and factors (`factor`).
+
+We are now going to use our "cytokines" dataset to explore the `data.frame` and 'factor' data structures.
