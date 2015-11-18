@@ -70,15 +70,24 @@ img {
 <blockquote>
 <h2>Learning Objectives</h2>
 <ul>
-<li>load external data (CSV files) in memory using the cytokine table (<code>cytokines.csv</code>) as an example</li>
-<li>explore the structure and the content of the data in R</li>
-<li>understand what are factors and how to manipulate them</li>
+<li>Build an understanding of the concepts of a <code>data.frame</code></li>
+<li>Understand how to load external data (CSV files) in memory using (<code>cytokines.csv</code>) as an example</li>
+<li>Explore the structure and the content of the data in R</li>
+<li>Understand what are factors and how to manipulate them</li>
 </ul>
 </blockquote>
 <hr />
+<div id="data-frames" class="section level1">
+<h1>Data Frames</h1>
+<p><code>data.frame</code> is the <em>de facto</em> data structure for most tabular data and what we use for statistics and plotting.</p>
+<p>A <code>data.frame</code> is a collection of vectors of identical lengths. Each vector represents a column, and each vector can be of a different data type (e.g., characters, integers, factors). The <code>str()</code> function is useful to inspect the data types of the columns.</p>
+<p>A <code>data.frame</code> can be created by the functions <code>read.csv()</code> or <code>read.table()</code>.</p>
+<p>By default, <code>data.frame</code> converts (= coerces) columns that contain characters (i.e., text) into the <code>factor</code> data type. Depending on what you want to do with the data, you may want to keep these columns as <code>character</code>. To do so, <code>read.csv()</code> and <code>read.table()</code> have an argument called <code>stringsAsFactors</code> which can be set to <code>FALSE</code>:</p>
+<pre class="r"><code>some_data &lt;- read.csv(&quot;data/some_file.csv&quot;, stringsAsFactors=FALSE)</code></pre>
+</div>
 <div id="presentation-of-cytokine-data" class="section level1">
 <h1>Presentation of Cytokine Data</h1>
-<p>Cytokine levels were measured in serum collected from “control”, “infection_A”, and “infection_B” patients. The dataset is stored as a <code>csv</code> file: each row holds information for a single patient, and the columns represent:</p>
+<p>Cytokine levels were measured in serum collected from “control” and “infected” patients. The dataset is stored as a <code>csv</code> file: each row holds information for a single patient, and the columns represent:</p>
 <table>
 <thead>
 <tr class="header">
@@ -135,7 +144,7 @@ img {
 <li>Second, create a new directory within this working directory called <code>data</code>. You can do this by clicking on the new folder icon in RStudio under the file tab, or by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
 <li>Third, download the data:</li>
 </ul>
-<pre class="r"><code>download.file(&quot;http://files.figshare.com/2441263/cytokines.csv&quot;,
+<pre class="r"><code>download.file(&quot;http://figshare.com/articles/WEHI_R_Demo/1604914&quot;,
               &quot;data/cytokines.csv&quot;)</code></pre>
 <p>You are now ready to load the data:</p>
 <pre class="r"><code>cytokines &lt;- read.csv('data/cytokines.csv')</code></pre>
@@ -165,14 +174,19 @@ img {
 <div id="factors" class="section level2">
 <h2>Factors</h2>
 <p>Factors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.</p>
-<p>Factors contain a pre-defined set values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. For instance, if you have a factor with 2 levels:</p>
-<pre class="r"><code>cell &lt;- factor(c(&quot;neutrophil&quot;, &quot;eosinophil&quot;, &quot;eosinophil&quot;, &quot;neutrophil&quot;))</code></pre>
-<p>R will assign <code>1</code> to the level <code>&quot;eosinophil&quot;</code> and <code>2</code> to the level <code>&quot;neutrophil&quot;</code> (because <code>e</code> comes before <code>n</code>, even though the first element in this vector is <code>&quot;neutrophil&quot;</code>). You can check this by using the function <code>levels()</code>, and check the number of levels using <code>nlevels()</code>:</p>
-<pre class="r"><code>levels(cell)
-nlevels(cell)</code></pre>
+<p>Factors contain a pre-defined set values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. It will assign <code>1</code> to the first level, <code>2</code> to the next, and so on. Let’s look at our cytokine dataset:</p>
+<pre class="r"><code>str(cytokines)
+cytokines$group
+levels(cytokines$group)    # names of unique levels within our 'group' column
+nlevels(cytokines$group)   # number of unique levels </code></pre>
 <div id="converting-factors" class="section level3">
 <h3>Converting factors</h3>
-<p>If you need to convert a factor to a character vector, simply use <code>as.character(x)</code>.</p>
+<p>If you need to convert a factor to a character vector, simply use <code>as.character(x)</code>. For example:</p>
+<pre class="r"><code>cytokines$group &lt;- as.character(cytokines$group)
+str(cytokines)</code></pre>
+<p>Now convert it back to a factor:</p>
+<pre class="r"><code>cytokines$group &lt;- as.factor(cytokines$group)
+str(cytokines)</code></pre>
 </div>
 </div>
 </div>
