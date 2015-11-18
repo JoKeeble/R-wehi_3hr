@@ -84,7 +84,7 @@ download.file("http://files.figshare.com/2443264/cytokines_3groups.csv",
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-cytokines <- read.csv('data/cytokines.csv')
+cytokines <- read.csv('cytokines_3groups.csv')
 ```
 
 This statement doesn't produce any output because assignment doesn't display
