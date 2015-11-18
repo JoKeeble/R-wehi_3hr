@@ -11,17 +11,6 @@ cytokines_L <- data.frame(cytokines[,c(1:2)], log2(cytokines[,-c(1,2)]))
 
 str(cytokines_L)
 
-# Identify groups (control,infected)
-groups <- cytokines_L$group
-groups[grep("control", groups)] <- "control"
-groups[grep("infection_A", groups)] <- "infection_A"
-groups[grep("infection_B", groups)] <- "infection_B"
-groups <- factor(groups)
-
-# Identify cytokines as one factor with 8 levels
-cyto8 <- colnames(transformed_cytokines[,-c(1,2)])
-cyto8 <- factor(cyto8)
-
 # ANOVA
 fit <- lapply(1:dim(log2cytokines)[2], function(i){
   aov(log2cytokines[,i] ~ groups)
