@@ -49,7 +49,7 @@ some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 ### Presentation of cytokine data
 ```
 
-Cytokine levels were measured in serum collected from "control", "infection_A", and "infection_B" patients.
+Cytokine levels were measured in serum collected from "control" and "infected" patients.
 The dataset is stored as a `csv` file: each row holds information for a single patient, and the columns represent:
 
 | Column           | Description                        |
