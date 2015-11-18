@@ -144,22 +144,22 @@ img {
 <li>Second, create a new directory within this working directory called <code>data</code>. You can do this by clicking on the new folder icon in RStudio under the file tab, or by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
 <li>Third, download the data:</li>
 </ul>
-<pre class="r"><code>download.file(&quot;http://figshare.com/articles/WEHI_R_Demo/1604914&quot;,
-              &quot;data/cytokines.csv&quot;)</code></pre>
+<pre class="r"><code>download.file(&quot;http://files.figshare.com/2443264/cytokines_3groups.csv&quot;,
+              &quot;data/cytokines_3groups.csv&quot;)</code></pre>
 <p>You are now ready to load the data:</p>
-<pre class="r"><code>cytokines &lt;- read.csv('data/cytokines.csv')</code></pre>
+<pre class="r"><code>cytokines &lt;- read.csv('data/cytokines_3groups.csv')</code></pre>
 <p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>cytokines</code></p>
 <p>Alternatively, wrapping an assignment in parentheses will perform the assignment and display it at the same time.</p>
-<pre class="r"><code>(cytokines &lt;- read.csv('data/cytokines.csv'))</code></pre>
+<pre class="r"><code>(cytokines &lt;- read.csv('data/cytokines_3groups.csv'))</code></pre>
 <p>Check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
 <pre class="r"><code>head(cytokines)</code></pre>
-<pre><code>#&gt;   patient_id    group IL17F IL17A GMCSF IL2 CXCL9 CXCL10 ENA78 IL4
-#&gt; 1          1  control    79    10    23 231   342    435   342 392
-#&gt; 2          2  control    34    12    43 234   465    324   234 324
-#&gt; 3          3  control    56    35    23 235   245    645   345 234
-#&gt; 4          4  control    67    22    45 264   455    342   435 235
-#&gt; 5          5  control    38    35    56 220   354    356   324 235
-#&gt; 6          6 infected   399    12   212 245  2340    324    56 304</code></pre>
+<pre><code>#&gt;   patient_id       group IL17F IL17A GMCSF IL2 CXCL9 CXCL10 ENA78 IL4
+#&gt; 1          1     control    79    10    23 231   342    435   342 392
+#&gt; 2          2     control    34    12    43 234   465    324   234 324
+#&gt; 3          3     control    56    35    23 235   245    645   345 234
+#&gt; 4          4     control    67    22    45 264   455    342   435 235
+#&gt; 5          5     control    38    35    56 220   354    356   324 235
+#&gt; 6          6 infection_A   399    12   212 245  2340    324    56 304</code></pre>
 <p>Let’s now check the __str__ucture of this <code>data.frame</code> in more details with the function <code>str()</code>:</p>
 <pre class="r"><code>str(cytokines)</code></pre>
 <div id="challenge" class="section level3">
