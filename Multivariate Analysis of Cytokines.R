@@ -1,26 +1,25 @@
 # Multivariate Analysis of Cytokines in Two Patient Groups ----------------
 
 # Example Dataset saved as "cytokines.csv"
-setwd("~/Documents/r_scripts/R-wehi_3hr")
+#setwd("~/Documents/r_scripts/R-wehi_3hr")
 
 # Import Data
 cytokines <- read.csv(file="data/cytokines_3groups.csv", header = TRUE)
 
-# transform dataset e.g. log2
-log2cytokines <- log2(cytokines[,-c(1,2)])
+# generate final data.frame transforming dataset e.g. log2
+cytokines_L <- data.frame(cytokines[,c(1:2)], log2(cytokines[,-c(1,2)]))
 
-# generate final data.frame
-cytokines.df <- data.frame(cytokines[,c(1:2)], log2cytokines)
+str(cytokines_L)
 
 # Identify groups (control,infected)
-groups <- cytokines.df$group
+groups <- cytokines_L$group
 groups[grep("control", groups)] <- "control"
 groups[grep("infection_A", groups)] <- "infection_A"
 groups[grep("infection_B", groups)] <- "infection_B"
 groups <- factor(groups)
 
 # Identify cytokines as one factor with 8 levels
-cyto8 <- colnames(cytokines.df[,-c(1,2)])
+cyto8 <- colnames(transformed_cytokines[,-c(1,2)])
 cyto8 <- factor(cyto8)
 
 # ANOVA
