@@ -77,7 +77,7 @@ by typing `dir.create("data")` at the terminal.
 - Third, download the data:
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file("http://files.figshare.com/2443240/cytokines.csv",
+download.file("http://files.figshare.com/2443264/cytokines_3groups.csv",
               "data/cytokines.csv")
 ```
 
