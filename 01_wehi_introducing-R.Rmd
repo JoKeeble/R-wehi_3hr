@@ -2,26 +2,97 @@
 layout: topic
 title: Introducing R
 author: Data Carpentry contributors
-minutes: 45
+minutes: 60
 ---
 
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
-source("setup_wehi.R")
+source("setup.R")
 ```
 
 ------------
 
 > ## Learning Objectives
 >
-> * Begin to appreciate the power of using R 
-> * Begin to understand some of the backbones of R (functions, objects, vectors, matrices)
+> * Begin to appreciate the awesomeness of R 
+> * Begin to understand some of the backbones of R: functions, objects, vectors, matrices
 
 ------------
+## Introductions
+```{r, echo=FALSE, purl=TRUE}
+### Introductions
 
-## The Awesome World of R
+```
+Alistair Walsh, Software Carpentry Teacher from Res Baz, who has dedicated a big chunk of his time to creating today's workshop
 
-_Start by showing an example of a script that generates a beautiful graph_
+Res Baz - teaching platform, thanks to Scott Ritchie et al for content suggestions
+
+Jo Keeble - beginner R user who is running today's workshop with the help and guidance of Alistair
+
+First Round of Participants: Swarna Vijayaraj, Man Lyang Kim, Tom Hayman, Thien Tran, Natasha Janz, Shereen Ong, Fansuo Geng (apologies from Ken and Marilou)
+
+In-house helpers: Matt Ritchie and Alex Garnham
+
+_Please note: this is the debut of this workshop so all feedback is much appreciated_
+
+
+# The Awesome World of R
+
+## What makes R so Awesome?
+
+```{r, echo=FALSE, purl=TRUE}
+### What makes R so Awesome?
+
+```
+
+- *More powerful* than Excel or Prism (e.g. can handle very large datasets)
+
+- Works with raw data, allowing you to *keep track of transformations* and *reduces chance of errors*
+
+- *Saves time* by streamlining standard analyses e.g. ELISA results
+
+- *Improves consistency* of results, by allowing you to easily perform identical analyses on different datasets
+
+- *Increases reproducibility* of results by allowing others to perform same analyses
+
+- *Highly customisable* in terms of e.g. graphics, statistical analysis
+
+- Capable of *generating reports* with R methods and results e.g. Bioinformatics reports 
+
+- *FREE*
+
+- *Community-driven tool* that *keeps getting better and better*!!
+
+## Today's Workshop
+
+```{r, echo=FALSE, purl=TRUE}
+### Today's Workshop
+
+```
+
+- Introduce R Studio
+- Show Demo Plot
+- Part 1 using R: start typing scripts, and learn about objects, vectors, matrices
+- Online Tools for Learning R
+- Part 2 using R: import  and analyse 'cytokine' dataset
+
+
+## Hello R Studio
+
+```{r, echo=FALSE, purl=TRUE}
+### Hello R Studio
+
+```
+
+R Studio has 4 windows: R Scripts, Console, Environment/History, and Files/Plots
+
+_Show an example of a script that generates a beautiful graph_
+
+Plot a dataset called 'iris' that is stored in R.
+
+'iris' is a dataset that contains measurements in cm of 4 variables: sepal width and length, and petal length and width) for 50 flowers from each of the 3 species of Iris.
+
+_Explain briefly each part of the code as you type_
 
 ```{r, purl=FALSE}
 pairs(iris[1:4], 
@@ -29,17 +100,6 @@ pairs(iris[1:4],
       pch = 21, 
       bg = c("red", "green3", "blue")[unclass(iris$Species)])
 ```
-
-* Point to the different parts:
-  - a function
-  - the assignment operator `<-`
-  - the `=` for arguments
-  - the comments `#` and how they are used to document function and its content
-  - the `$` operator
-* Point to indentation and consistency in spacing to improve clarity
-
-Two popular style guides for R are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html) and
-[Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml).
 
 
 ## Objects in R
@@ -203,6 +263,6 @@ x[,3]     # all of column 3
 
 Vectors and matrices are some of the many **data structures** that R uses. 
 
-Other important ones are lists (`list`), matrices, data frames (`data.frame`) and factors (`factor`).
+Other important ones are lists (`list`), data frames (`data.frame`) and factors (`factor`).
 
-We are now going to use our "cytokines" dataset to explore the `data.frame` and 'factor' data structures.
+_Morning Tea Break_

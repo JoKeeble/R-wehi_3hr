@@ -1,0 +1,193 @@
+---
+layout: topic
+title: Data Analysis
+author: Data Carpentry contributors
+minutes: 60
+---
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+```
+
+------------
+
+> ## Learning Objectives
+>
+> * Build an understanding of the concepts of a `data.frame`
+> * Learn to load external data (CSV files) in memory using
+>  (`cytokines.csv`) as an example
+> * Explore structure and the content of the data
+> * Understand what are factors and how to manipulate them
+> * Introduce exploratory plots, statistical analyses
+
+------------
+# Cytokine Data
+
+```{r, echo=FALSE, purl=TRUE}
+### Cytokine Data
+```
+
+Serum cytokine levels were measured in "control", "infection_A" and "infection_B" patients.
+
+The dataset is stored as a `csv` file: each row holds information for a single patient, and the columns represent:
+
+| Column           | Description                        |
+|------------------|------------------------------------|
+| patient_id       | unique id for each patient         |
+| group            | status of the patient              |
+| IL17F            | concentration of IL17F             |
+| IL17A            | concentration of IL17A             |
+| GMCSF            | concentration of GMCSF             |
+| IL2              | concentration of IL2               |
+| CXCL9            | concentration of CXCL9             |
+| CXCL10           | concentration of CXCL10            |
+| ENA78            | concentration of ENA78             |
+| IL4              | concentration of IL4               |
+
+
+### Create Folders and Set Working Directory
+
+```{r, echo=FALSE, purl=TRUE}
+### Create Folders and Set Working Directory
+```
+
+- Create a new folder in documents, called "r_scripts"
+- Locate "r_scripts" in RStudio ('Files', lower right window)
+- Set as working directory `setwd("~/Documents/r_scripts")` or use 'More' icon
+- Create new folder `dir.create("data")` or use 'New Folder' icon
+
+### Load Cytokine Data
+```{r, echo=FALSE, purl=TRUE}
+### Load Cytokine Data
+```
+
+Download cytokines data:
+
+```{r, eval=FALSE, purl=TRUE}
+download.file("http://files.figshare.com/2443264/cytokines_3groups.csv",
+              "data/cytokines_3groups.csv")
+```
+
+Load the data:
+
+```{r, eval=TRUE,  purl=FALSE}
+cytokines <- read.csv('data/cytokines_3groups.csv')
+```
+
+Type variable `cytokines` to view, or wrap assignment in parentheses to assign and display at the same time.
+
+```{r, eval = TRUE, purl = FALSE}
+(cytokines <- read.csv('data/cytokines_3groups.csv'))
+```
+
+Check top (first 6 lines) using the function `head()`:
+
+```{r, results='show', purl=FALSE}
+head(cytokines)
+```
+
+The object `cytokines` is a `data.frame`.
+A `data.frame` can be created by the functions `read.csv()` or `read.table()`.
+
+### Data Frames
+
+`data.frame` is the _de facto_ data structure for most tabular data and what we
+use for statistics and plotting.
+
+A `data.frame` is a collection of vectors of identical lengths. Each vector
+represents a column, and each vector can be 
+of a different data type (e.g. characters, integers, factors). The `str()`
+function is useful to inspect the data types of the columns.
+
+Now, generate final data.frame with Log2 transformed cytokine concentrations:
+
+```{r, purl=FALSE}
+cytokines_L <- data.frame(cytokines[,c(1:2)], log2(cytokines[,-c(1,2)]))
+```
+
+Examine the structure of this final `data.frame`:
+
+```{r, purl=FALSE}
+str(cytokines_L)  # reports the data types for each column
+```
+
+$ allow you to select columns using their names:
+
+```{r, purl=FALSE}
+cytokines_L$IL17F
+cytokines_L$group
+```
+
+`cytokines_L$group` is a `factor` with 3 levels: "control", "infection_A", "infection_B"
+
+### Factors
+
+```{r, echo=FALSE, purl=TRUE}
+### Factors
+```
+
+Factors are used to represent categorical data, and are an important class for statistical analysis and for plotting.
+
+Factors contain a pre-defined set values, known as *levels*. 
+
+By default, R always sorts *levels* in alphabetical order. It will assign `1` to the first level, `2` to the next, and so on. 
+
+### Visualising and Analysing Cytokine Data
+
+```{r, echo=FALSE, purl=TRUE}
+### Visualising and Analysing Cytokine Data
+```
+
+To begin, let's `plot` our cytokine data:
+
+```{r, purl=TRUE}
+plot(cytokines_L[,-c(1,2)])
+```
+
+Add colors to distinguish the 3 groups:
+
+```{r, purl=TRUE}
+plot(cytokines_L[,-c(1,2)], 
+     pch = 21, 
+     bg = c("red", "green3", "blue")[unclass(cytokines_L$group)])
+```
+
+Focus in on 3 cytokines that look promising ("IL17F", "IL2", and "CXCL9"):
+To begin, let's `plot` our cytokine data:
+
+```{r, purl=TRUE}
+plot(cytokines_L[,c("IL17F","IL2","CXCL9")], 
+     pch = 21, 
+     bg = c("red", "green3", "blue")[unclass(cytokines_L$group)])
+```
+
+Perform ANOVA:
+
+```{r, purl=TRUE}
+fit = aov(cytokines_L[,"IL17F"] ~ cytokines_L$group)
+
+summary.aov(fit)
+```
+
+Box and Whisker Plot:
+
+```{r, purl=TRUE}
+boxplot(cytokines_L$IL17F~cytokines_L$group,
+        ylab = "log.conc",
+        xlab = "Groups",
+        main = "IL17F serum levels in patients",
+        col = "dark green")
+```
+
+Optional extra, create overlay:
+
+```{r, purl=TRUE}
+boxplot(cytokines_L$IL17F~cytokines_L$group,
+        ylab = "log.conc",
+        xlab = "Groups",
+        main = "IL17F serum levels in patients",
+        col = "dark green")
+points(cytokines_L$IL17F~cytokines_L$group, 
+         pch = 21,
+         bg = "red")
+```
